@@ -48,7 +48,10 @@ PIVA-prostate-MRI/
 The broad comparative notebook remains the canonical end-to-end capstone experiment. The
 v2.0 full-covariance notebook is a focused follow-up: it isolates whether a Cholesky
 full-covariance posterior and identifiable ILR volume-fraction latent improve uncertainty
-calibration relative to the diagonal PIVA posterior.
+calibration relative to the diagonal PIVA posterior. The Cholesky full-covariance direction
+is credited to Finkelstein et al. (2026), whose PS-VAE paper uses a physics simulator and
+full covariance posterior for multiparameter uncertainty mapping in quantitative molecular
+MRI.
 
 ---
 

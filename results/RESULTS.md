@@ -173,6 +173,8 @@ KL warm-up applied: β increases linearly from 0 to β_max over 100 epochs, held
 **Question:** Does replacing PIVA's diagonal posterior with a Cholesky full-covariance posterior, plus an identifiable ILR parameterization of the volume-fraction latent, improve calibrated uncertainty?  
 **Scope:** PIVA-Tight only, σ = 0.05, 240 held-out voxels, 25 Monte Carlo posterior samples.
 
+**Credit:** the Cholesky full-covariance posterior direction owes credit to Finkelstein et al. (2026), whose PS-VAE work in quantitative molecular MRI uses a physics-structured variational autoencoder with full covariance to represent inter-parameter correlations in latent biophysical space.
+
 ### 8.1 Point Accuracy at σ = 0.05
 
 | Model | D R² | T2 R² | v R² | D MAE | T2 MAE | v MAE | D r | T2 r | v r |
@@ -236,4 +238,4 @@ The calibrated intervals remain wide. The most important caution is that calibra
 
 ### 8.5 v2.0 Conclusion
 
-The Cholesky full-covariance posterior plus ILR volume latent is a meaningful improvement over the diagonal posterior because it improves raw coverage across all parameters and calibrated coverage for most parameters. However, it does not fully solve uncertainty calibration. The next step should be a calibration method that preserves sharpness, such as split conformal calibration or a better learned prior, rather than relying on covariance structure alone.
+The Cholesky full-covariance posterior plus ILR volume latent is a meaningful improvement over the diagonal posterior because it improves raw coverage across all parameters and calibrated coverage for most parameters. The full-covariance idea follows Finkelstein et al.'s PS-VAE motivation that biophysical latent parameters can be strongly correlated and should not always be forced into a diagonal posterior. However, it does not fully solve uncertainty calibration. The next step should be a calibration method that preserves sharpness, such as split conformal calibration or a better learned prior, rather than relying on covariance structure alone.

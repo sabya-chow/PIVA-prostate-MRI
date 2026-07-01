@@ -11,7 +11,7 @@ This project develops and evaluates **PIVA** (Physics-Informed Variational Autoe
 
 PIVA addresses this by embedding the known MRI physics equation inside a variational autoencoder, replacing voxel-by-voxel curve fitting with a learned probabilistic inverse map that returns a **posterior distribution** over the 9 tissue parameters rather than a point estimate.
 
-**Latest update:** the repository now includes a focused v2.0 notebook that tests whether replacing the diagonal PIVA posterior with a Cholesky full-covariance posterior, plus an identifiable ILR parameterization for volume fractions, improves uncertainty calibration at the clinical reference noise level σ = 0.05.
+**Latest update:** the repository now includes a focused v2.0 notebook that tests whether replacing the diagonal PIVA posterior with a Cholesky full-covariance posterior, plus an identifiable ILR parameterization for volume fractions, improves uncertainty calibration at the clinical reference noise level σ = 0.05. The full-covariance posterior direction is explicitly credited to Finkelstein et al.'s PS-VAE paper on multiparameter uncertainty mapping in quantitative molecular MRI.
 
 ---
 
@@ -85,7 +85,9 @@ Three prior configurations are tested:
 Posterior inference: **25 Monte Carlo forward passes** → posterior mean and σ per parameter.
 
 ### 4. PIVA v2.0 — Full-Covariance Cholesky Posterior + ILR Volume Latent
-The v2.0 notebook isolates one architectural change: diagonal Gaussian posterior versus full-covariance posterior. It keeps the same physics decoder, physiological window, β=0.1 ELBO training recipe, and held-out cohort, but replaces:
+The v2.0 notebook isolates one architectural change: diagonal Gaussian posterior versus full-covariance posterior. This direction owes direct credit to Finkelstein et al. (2026), whose PS-VAE for quantitative molecular MRI uses a physics simulator and a full covariance posterior to capture inter-parameter correlations in latent biophysical space. This repository adapts that idea to the 3-compartment prostate MRI setting.
+
+The experiment keeps the same physics decoder, physiological window, β=0.1 ELBO training recipe, and held-out cohort, but replaces:
 
 ```text
 q(z|x) = N(mu, diag(sigma^2))
@@ -206,3 +208,4 @@ The notebook is linear. Run all cells top-to-bottom. Key checkpoints:
 - Kingma & Welling (2014) — Variational Autoencoder (VAE)
 - Higgins et al. (2017) — β-VAE: understanding disentangled representations
 - Raissi et al. (2019) — Physics-Informed Neural Networks
+- Finkelstein, A., Moneta, R., Zohar, O., Rivlin, M., Zaiss, M., Friedmann Morvinski, D., & Perlman, O. (2026) — Multiparameter Uncertainty Mapping in Quantitative Molecular MRI using a Physics-Structured Variational Autoencoder (PS-VAE), arXiv:2602.03317. https://arxiv.org/abs/2602.03317

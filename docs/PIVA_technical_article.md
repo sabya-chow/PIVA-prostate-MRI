@@ -442,6 +442,12 @@ But voxel A (centre) is easier to predict — MAE is lower. Voxel B (boundary) h
 
 ## 7. The Path Forward
 
+### 7.0 Related Work: PS-VAE Full-Covariance Posterior
+
+The v2.0 Cholesky full-covariance direction owes explicit credit to Finkelstein et al. (2026), "Multiparameter Uncertainty Mapping in Quantitative Molecular MRI using a Physics-Structured Variational Autoencoder (PS-VAE)." Their paper frames a closely related quantitative MRI inverse problem: estimate voxelwise multi-parameter posterior distributions by combining a differentiable physics simulator with a variational autoencoder, and use a full covariance posterior to capture correlations among latent biophysical parameters.
+
+The prostate PIVA implementation here is not a copy of that application domain: it uses a 3-compartment prostate MRI signal model rather than CEST/MT molecular MRF, and it evaluates NLLS, PIA, diagonal PIVA, and Cholesky/ILR PIVA on the synthetic prostate cohort. But the reason to test a Cholesky posterior is directly inherited from the PS-VAE insight: when the physics model couples parameters, a diagonal posterior is structurally unable to represent posterior correlation.
+
 ### 7.1 Structural Fix: Replace tanh with Linear + Clamp
 
 $$D_c = \text{clamp}\!\left(D_{\text{mean},c} + D_{\delta,c} \cdot z_c,\ D_{\text{low},c},\ D_{\text{high},c}\right)$$
