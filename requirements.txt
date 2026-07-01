@@ -1,0 +1,10 @@
+# PIVA — Physics-Informed Variational Autoencoder
+# Python >= 3.9
+
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+torch>=2.0.0          # CPU build; for GPU: pip install torch --index-url https://download.pytorch.org/whl/cu118
+jupyter>=1.0.0
+notebook>=7.0.0

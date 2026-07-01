@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.whl
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Environments
+.env
+.venv
+venv/
+env/
+ENV/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# PyTorch checkpoints
+*.pt
+*.pth
+checkpoints/
+
+# Data (add exceptions below if needed)
+data/
+*.nii
+*.nii.gz
+*.dcm
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Outputs / figures (keep results/ folder but ignore raw figure dumps)
+figures/
+*.png
+!assets/*.png
