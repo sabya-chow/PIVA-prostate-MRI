@@ -21,21 +21,34 @@ notebook cell and function doing the work.
 ## Complete File Map
 
 ```
-implementation of PIVA/
+PIVA-prostate-MRI/
 │
-├── colab_PIVA_comparative.ipynb      ← Original 30-cell notebook (annotated with 4 reference notes)
-│                                        PIA + PIVA baseline, NLLS comparison
+├── notebooks/
+│   ├── PIVA_comparative.ipynb
+│   │   └── Broad comparison: NLLS, PIA, PIVA-Tight, PIVA-Wide, PIVA-Free, beta sweep
+│   └── PIVA_comparative_full_covariance_v2_0.ipynb
+│       └── Focused v2.0 experiment: PIVA-Diagonal vs PIVA-CholeskyILR at sigma=0.05
 │
-├── modified_PIVA_comparative.ipynb   ← Revised 32-cell notebook with 4 professor changes applied
-│                                        Env noise removed, R² latent fidelity, 3 PIVA variants,
-│                                        confidence metrics (CV, calibration, 95% CI coverage)
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── PIVA_technical_article.md
+│   └── math_explainer.md
 │
-└── ARCHITECTURE.md                   ← This file
+├── results/
+│   └── RESULTS.md
+│
+├── assets/
+│   └── mri_1.png
+│
+├── requirements.txt
+├── .gitignore
+└── README.md
 ```
 
-The two notebooks share an identical pipeline structure. The modified notebook differs in
-four targeted places — marked with yellow callout cells — and is the canonical version
-for all further development.
+The broad comparative notebook remains the canonical end-to-end capstone experiment. The
+v2.0 full-covariance notebook is a focused follow-up: it isolates whether a Cholesky
+full-covariance posterior and identifiable ILR volume-fraction latent improve uncertainty
+calibration relative to the diagonal PIVA posterior.
 
 ---
 

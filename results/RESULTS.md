@@ -164,3 +164,76 @@ KL warm-up applied: β increases linearly from 0 to β_max over 100 epochs, held
 | Higher β improves calibration | ⚠️ Partially | Coverage increases with β but never exceeds 0.35 for D |
 | PIVA-Free is a viable variant | ❌ No | Posterior collapse: D R² = −1.4, T2 MAE = 300 ms |
 | β-tuning resolves the accuracy–calibration trade-off | ❌ No | Trade-off is monotonic; no β achieves both |
+
+---
+
+## 8. v2.0 Full-Covariance Posterior Experiment
+
+**Notebook:** `notebooks/PIVA_comparative_full_covariance_v2_0.ipynb`  
+**Question:** Does replacing PIVA's diagonal posterior with a Cholesky full-covariance posterior, plus an identifiable ILR parameterization of the volume-fraction latent, improve calibrated uncertainty?  
+**Scope:** PIVA-Tight only, σ = 0.05, 240 held-out voxels, 25 Monte Carlo posterior samples.
+
+### 8.1 Point Accuracy at σ = 0.05
+
+| Model | D R² | T2 R² | v R² | D MAE | T2 MAE | v MAE | D r | T2 r | v r |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| NLLS | 0.926 | 0.807 | 0.267 | 0.222 | 92.712 | 0.125 | 0.966 | 0.919 | 0.710 |
+| PIA | 0.984 | 0.960 | 0.593 | 0.091 | 35.534 | 0.093 | 0.993 | 0.980 | 0.777 |
+| PIVA-Diagonal | 0.987 | 0.966 | 0.577 | 0.080 | 33.525 | 0.097 | 0.994 | 0.987 | 0.759 |
+| PIVA-CholeskyILR | 0.988 | 0.957 | 0.568 | 0.077 | 37.295 | 0.097 | 0.994 | 0.984 | 0.754 |
+
+The full-covariance Cholesky/ILR variant slightly improves D R² and D MAE, while T2 and v point accuracy remain broadly similar to the diagonal baseline. This means the upgrade should be judged mainly on uncertainty behavior, not headline point accuracy.
+
+### 8.2 Raw 95% CI Coverage by Parameter
+
+| Parameter | PIVA-Diagonal | PIVA-CholeskyILR | Change |
+|---|---:|---:|---:|
+| D_ep | 0.096 | 0.367 | +0.271 |
+| D_st | 0.071 | 0.158 | +0.087 |
+| D_lum | 0.346 | 0.629 | +0.283 |
+| T2_ep | 0.088 | 0.200 | +0.112 |
+| T2_st | 0.050 | 0.142 | +0.092 |
+| T2_lum | 0.179 | 0.546 | +0.367 |
+| v_ep | 0.025 | 0.121 | +0.096 |
+| v_st | 0.021 | 0.092 | +0.071 |
+| v_lum | 0.092 | 0.142 | +0.050 |
+
+Raw coverage improves for all nine parameters, but it still remains below the nominal 0.950 target. The full-covariance posterior fixes part of the geometry problem but does not by itself produce calibrated credible intervals.
+
+### 8.3 Post-Hoc Calibrated Coverage
+
+The v2.0 notebook fits one scalar temperature `tau` per compartment on a calibration split, then evaluates coverage on a held-out test split.
+
+| Parameter | PIVA-Diagonal | PIVA-CholeskyILR | Change |
+|---|---:|---:|---:|
+| D_ep | 0.908 | 0.958 | +0.050 |
+| D_st | 0.958 | 0.967 | +0.009 |
+| D_lum | 0.983 | 0.950 | -0.033 |
+| T2_ep | 0.908 | 0.908 | 0.000 |
+| T2_st | 0.833 | 0.950 | +0.117 |
+| T2_lum | 0.908 | 0.925 | +0.017 |
+| v_ep | 0.917 | 0.925 | +0.008 |
+| v_st | 0.842 | 0.950 | +0.108 |
+| v_lum | 0.900 | 0.925 | +0.025 |
+
+After calibration, CholeskyILR improves seven of nine parameters. D_lum coverage is slightly lower, and T2_ep is unchanged.
+
+### 8.4 Calibrated Interval Width as Percent of Physiological Range
+
+| Parameter | PIVA-Diagonal | PIVA-CholeskyILR |
+|---|---:|---:|
+| D_ep | 77.9% | 88.6% |
+| D_st | 79.7% | 84.7% |
+| D_lum | 110.6% | 70.1% |
+| T2_ep | 62.1% | 55.7% |
+| T2_st | 76.7% | 103.6% |
+| T2_lum | 119.9% | 112.8% |
+| v_ep | 41.8% | 50.4% |
+| v_st | 48.2% | 64.4% |
+| v_lum | 28.1% | 28.5% |
+
+The calibrated intervals remain wide. The most important caution is that calibrated coverage alone is not enough: D_lum, T2_st, and T2_lum still have intervals that are around 70% to 113% of the physiological range, which limits clinical usefulness.
+
+### 8.5 v2.0 Conclusion
+
+The Cholesky full-covariance posterior plus ILR volume latent is a meaningful improvement over the diagonal posterior because it improves raw coverage across all parameters and calibrated coverage for most parameters. However, it does not fully solve uncertainty calibration. The next step should be a calibration method that preserves sharpness, such as split conformal calibration or a better learned prior, rather than relying on covariance structure alone.

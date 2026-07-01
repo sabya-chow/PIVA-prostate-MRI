@@ -11,6 +11,8 @@ This project develops and evaluates **PIVA** (Physics-Informed Variational Autoe
 
 PIVA addresses this by embedding the known MRI physics equation inside a variational autoencoder, replacing voxel-by-voxel curve fitting with a learned probabilistic inverse map that returns a **posterior distribution** over the 9 tissue parameters rather than a point estimate.
 
+**Latest update:** the repository now includes a focused v2.0 notebook that tests whether replacing the diagonal PIVA posterior with a Cholesky full-covariance posterior, plus an identifiable ILR parameterization for volume fractions, improves uncertainty calibration at the clinical reference noise level σ = 0.05.
+
 ---
 
 ## The 3-Compartment Signal Model
@@ -34,7 +36,8 @@ Acquisitions: **4 b-values** × **4 echo times** = **16 signal measurements per 
 PIVA-prostate-MRI/
 │
 ├── notebooks/
-│   └── PIVA_comparative.ipynb     ← Main experiment notebook (all models, all results)
+│   ├── PIVA_comparative.ipynb                         ← Main experiment notebook (all models, all results)
+│   └── PIVA_comparative_full_covariance_v2_0.ipynb    ← Focused v2.0 Cholesky/ILR posterior upgrade
 │
 ├── docs/
 │   ├── ARCHITECTURE.md            ← Full system architecture, cell-by-cell walkthrough
@@ -56,7 +59,7 @@ PIVA-prostate-MRI/
 
 ## Methods
 
-Three model families are compared on an identical held-out synthetic cohort (240 voxels = 24 patients × 10 voxels):
+The broad comparative notebook evaluates three model families on an identical held-out synthetic cohort (240 voxels = 24 patients × 10 voxels):
 
 ### 1. NLLS Baseline
 `scipy.curve_fit` applied independently per voxel. No shared information across voxels. Serves as the clinical baseline.
@@ -81,6 +84,21 @@ Three prior configurations are tested:
 
 Posterior inference: **25 Monte Carlo forward passes** → posterior mean and σ per parameter.
 
+### 4. PIVA v2.0 — Full-Covariance Cholesky Posterior + ILR Volume Latent
+The v2.0 notebook isolates one architectural change: diagonal Gaussian posterior versus full-covariance posterior. It keeps the same physics decoder, physiological window, β=0.1 ELBO training recipe, and held-out cohort, but replaces:
+
+```text
+q(z|x) = N(mu, diag(sigma^2))
+```
+
+with:
+
+```text
+q(z|x) = N(mu, L L^T)
+```
+
+where `L` is a learned lower-triangular Cholesky factor. The volume-fraction latent is also changed from a redundant 3-dimensional softmax input to a 2-dimensional ILR representation, removing the null direction where `softmax(v_raw + c*1) = softmax(v_raw)`.
+
 ---
 
 ## Key Results (σ = 0.05, clinical SNR ≈ 20:1)
@@ -94,6 +112,15 @@ Posterior inference: **25 Monte Carlo forward passes** → posterior mean and σ
 | PIVA-Free | −1.483 | −0.658 | −2.231 | 1.345 | 303.9 | 0.285 |
 
 Full results across all noise levels and the β-sweep: see [`results/RESULTS.md`](results/RESULTS.md).
+
+### Latest v2.0 Result: Diagonal vs Full-Covariance Posterior (σ = 0.05)
+
+| Model | D R² | T2 R² | v R² | D MAE | T2 MAE (ms) | v MAE |
+|---|---:|---:|---:|---:|---:|---:|
+| PIVA-Diagonal | 0.987 | 0.966 | 0.577 | 0.080 | 33.525 | 0.097 |
+| **PIVA-CholeskyILR** | **0.988** | 0.957 | 0.568 | **0.077** | 37.295 | 0.097 |
+
+The full-covariance Cholesky/ILR model improves raw coverage for all nine compartment parameters. After per-compartment post-hoc calibration, coverage improves for seven of nine parameters, but some intervals remain clinically wide. The result is positive but not magic: full covariance helps posterior geometry, while calibration still needs a separate correction step.
 
 ### Uncertainty Calibration (PIVA-Tight, σ = 0.05)
 
@@ -125,12 +152,12 @@ There is a monotonic accuracy–coverage trade-off with β. No single β achieve
 ### Environment Setup
 
 ```bash
-git clone https://github.com/sabyachow/PIVA-prostate-MRI.git
+git clone https://github.com/sabya-chow/PIVA-prostate-MRI.git
 cd PIVA-prostate-MRI
 pip install -r requirements.txt
 ```
 
-### Run the Notebook
+### Run the Main Notebook
 
 ```bash
 jupyter notebook notebooks/PIVA_comparative.ipynb
@@ -139,6 +166,14 @@ jupyter notebook notebooks/PIVA_comparative.ipynb
 All data is generated synthetically within the notebook — no external dataset is required. The notebook is fully self-contained and runs end-to-end from data generation through the β-sweep experiment.
 
 **Estimated runtime:** ~10–15 min on CPU (200 epochs × 3 PIVA variants + β-sweep); ~3–5 min on GPU.
+
+### Run the v2.0 Full-Covariance Notebook
+
+```bash
+jupyter notebook notebooks/PIVA_comparative_full_covariance_v2_0.ipynb
+```
+
+This notebook is narrower: it compares PIVA-Diagonal against PIVA-CholeskyILR at σ = 0.05 and includes raw plus post-hoc calibrated coverage diagnostics.
 
 ### Cell Execution Order
 
