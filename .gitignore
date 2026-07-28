@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Data (too large for git)
+data/*.npy
+
+# Model checkpoints (too large for git)
+checkpoints/*.pt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Office / PowerPoint temp files
+~$*
+
+# Logs
+nohup.out
+*.log
