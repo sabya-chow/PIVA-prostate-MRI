@@ -1,11 +1,11 @@
 # PIVA — Physics-Informed Variational Autoencoder for Prostate MRI Parameter Estimation
 
 **Capstone Project | MS Applied Data Science | University of Chicago**  
-**Author:** Sabyasachi Chowdhury · sabyachow@gmail.com
+**Authors:** Sabyasachi Chowdhury · sabyachow@gmail.com · Aaron Garay · aaron.m.garay@gmail.com
 
 ---
 
-## Overview
+## Abstract
 
 This project develops and evaluates **PIVA** (Physics-Informed Variational Autoencoder) for quantitative parameter estimation from 3-compartment prostate MRI signals. The core clinical problem: Non-Linear Least Squares (NLLS) fitting of the multi-compartment model collapses at clinical SNR (~20:1), producing diffusivity and T2 maps that are statistically indistinguishable from noise. ~168,000 men per year in the US receive false-positive PSA tests and undergo unnecessary biopsies partly because these quantitative maps are unreliable.
 
@@ -89,17 +89,17 @@ The v2.0 notebook isolates one architectural change: diagonal Gaussian posterior
 
 The experiment keeps the same physics decoder, physiological window, β=0.1 ELBO training recipe, and held-out cohort, but replaces:
 
-```text
-q(z|x) = N(mu, diag(sigma^2))
+```math
+q(z|x) = N(\mu, diag(\sigma^2))
 ```
 
 with:
 
-```text
-q(z|x) = N(mu, L L^T)
+```math
+q(z|x) = N(\mu, L L^T)
 ```
 
-where `L` is a learned lower-triangular Cholesky factor. The volume-fraction latent is also changed from a redundant 3-dimensional softmax input to a 2-dimensional ILR representation, removing the null direction where `softmax(v_raw + c*1) = softmax(v_raw)`.
+where $L$ is a learned lower-triangular Cholesky factor. The volume-fraction latent is also changed from a redundant 3-dimensional softmax input to a 2-dimensional ILR representation, removing the null direction where $softmax(v_{raw} + c*\hat1) = softmax(v_{raw})$.
 
 ---
 
