@@ -1,103 +1,145 @@
-# PIA-IVIM: Physics-Informed AI for Intravoxel Incoherent Motion MRI
+# Physics-Informed Deep Learning for Noise-Robust IVIM Parameter Estimation in Breast DW-MRI
 
-Two-stage deep learning pipeline for quantitative IVIM parameter estimation from diffusion-weighted breast MRI, benchmarked against non-linear least squares (NLLS) fitting.
+## Members
+- **Ken Lew** (Research Lead — Breast DW-MRI IVIM Integration)
+- **Sabya Chow** (Sabyasachi Chowdhury — PIVA Prostate MRI Group Lead / Collaborator)
 
-Based on the AAPM IVIM Challenge using VICTRE digital breast phantoms.
+---
+
+## Abstract
+
+Breast cancer remains the most prevalent malignancy among women worldwide, with early and accurate non-invasive characterization being critical for clinical management. Diffusion-Weighted Magnetic Resonance Imaging (DW-MRI) paired with the Intravoxel Incoherent Motion (IVIM) biexponential model allows quantitative decoupling of microvascular perfusion ($f$), true tissue diffusion ($D_t$), and capillary pseudo-diffusion ($D^*$) without contrast dye injections (e.g., gadolinium). However, conventional voxel-wise non-linear least squares (NLLS) optimization suffers from extreme noise sensitivity, lack of spatial continuity, and prohibitive CPU computational latency (~187 seconds per 2D slice).
+
+To overcome these challenges, we introduce a **Two-Stage Physics-Informed Artificial Intelligence Pipeline** tailored for breast DW-MRI:
+1. **Stage 1 (Physics-Informed Autoencoder - PIA)**: Employs a self-supervised neural encoder paired with an exact bi-exponential IVIM physics decoder ($S(b) = (1-f)e^{-b D_t} + f e^{-b D^*}$) and bounded activation functions ($\text{mean} \pm \Delta \cdot \tanh(\cdot)$), guaranteeing parameter estimates stay within biophysical bounds without requiring ground-truth labels during initial training. We benchmark both multi-layer perceptron (MLP-PIA) and convolutional (CNN-PIA) encoders.
+2. **Stage 2 (Spatial U-Net Refiner)**: A multi-scale residual U-Net (3.49M parameters) that operates across all Stage 1 output parameter maps simultaneously, exploiting spatial coherence to eliminate salt-and-pepper noise artifacts and applying tumor-weighted supervised loss to preserve sharp malignant lesion boundaries.
+
+Evaluated on 400 held-out test patient datasets derived from the VICTRE (Virtual Imaging Clinical Trials for Regulatory Evaluation) digital breast phantom platform across 12 noise levels ($\text{SNR} = 4$ to $\text{SNR} = 100$):
+- **Computational Speed**: The proposed pipeline achieves an inference latency of **29 milliseconds per slice on GPU** compared to **187.3 seconds for NLLS fitting**—a **6,431× speedup**, enabling real-time quantitative mapping directly on MRI console workstations.
+- **Noise Stability**: Under severe noise conditions ($\text{SNR} = 10$), our CNN-PIA + Refiner maintains a total relative root mean square error ($\text{rRMSE}$) of **0.28**, whereas NLLS fitting diverges catastrophically with an $\text{rRMSE}$ exceeding **9.4** (a **33.5× improvement** in estimation stability).
+
+---
 
 ## Repository Structure
 
 ```
-├── src/                     Source code
-│   ├── PIA.py               Self-supervised PIA model (Stage 1 MLP autoencoder)
-│   ├── model.py             Supervised PIAEncoder baseline (Model-1)
-│   ├── utils.py             Metrics (rRMSE), data loading, NLLS fitting, batch generation
-│   ├── NLLS_solution.py     NLLS baseline evaluation script
+├── README.md                Main repository documentation (Title, Members, Abstract, Install & Run)
+├── DESIGN.md                LLM-oriented architectural summary (8 core design points)
+├── requirements.txt         Python package dependencies
+│
+├── presentation/            Capstone presentations & flowchart diagrams
+│   ├── PIA_IVIM_Presentation.pptx   13-slide Capstone presentation deck
+│   └── flowcharts/                  System & network architecture flowcharts
+│       ├── pipeline_overview.jpg
+│       ├── mlp_pia_architecture.jpg
+│       ├── cnn_pia_architecture.jpg
+│       └── unet_refiner_architecture.jpg
+│
+├── src/                     Source code modules
+│   ├── PIA.py               Self-supervised Physics-Informed Autoencoder (Stage 1 MLP & CNN)
+│   ├── model.py             Supervised baseline encoder models
+│   ├── utils.py             Biexponential math, data loading, rRMSE metrics, NLLS fitting
+│   ├── NLLS_solution.py     Voxel-wise NLLS baseline evaluation script
 │   └── method1.py           Supervised baseline training script
 │
-├── data/                    VICTRE phantom dataset (not tracked in git)
-│   └── XXXX_*.npy           Per-patient files (see Data Format below)
+├── data/                    VICTRE digital breast phantom dataset (400 cases, 0001–0400)
+│   └── XXXX_*.npy           Per-patient DWIs, k-space noise, tissue masks, & ground truth
 │
-├── checkpoints/             Trained model weights (not tracked in git)
+├── checkpoints/             Pre-trained model weights (.pt files)
 │   ├── pia_baseline.pt      MLP-PIA (Stage 1)
 │   ├── pia_cnn_best.pt      CNN-PIA (Stage 1)
-│   ├── refiner_cnn_best.pt  CNN-PIA + U-Net Refiner (Stage 2)
-│   ├── refiner_cnn_e2e_best.pt   CNN-PIA + Refiner, end-to-end fine-tuned
-│   └── refiner_mlp_e2e_best.pt   MLP-PIA + Refiner, end-to-end fine-tuned
+│   ├── refiner_cnn_best.pt  CNN-PIA + Refiner (Stage 2)
+│   ├── refiner_cnn_e2e_best.pt  CNN-PIA + Refiner (End-to-End fine-tuned)
+│   └── refiner_mlp_e2e_best.pt  MLP-PIA + Refiner (End-to-End fine-tuned)
 │
-├── figures/                 Publication figures & scripts (Black & White)
-│   ├── benchmark_inference.py   Inference timing benchmark (CPU & GPU)
-│   ├── plot_noise_clean.py      rRMSE vs noise level line plots
-│   ├── plot_tables.py           Publication tables (inference time & rRMSE)
-│   ├── plot_paper_figures.py    Qualitative maps, ablation & input figures
-│   └── *.png / *.jpg            Generated figures and architecture diagrams
+├── figures/                 Publication scripts & generated figures
+│   ├── benchmark_inference.py   CPU vs. GPU inference speed benchmarking
+│   ├── plot_noise_clean.py      rRMSE vs. noise level line plots
+│   ├── plot_tables.py           Paper summary tables (timing & error metrics)
+│   ├── plot_paper_figures.py    Qualitative maps, ablation & input data figures
+│   └── *.png / *.jpg            Generated figures & paper diagrams
 │
-├── results/                 Evaluation data
-│   ├── noise_evaluation_results_e2e.json   rRMSE across 12 noise levels
-│   └── inference_timing.json               CPU/GPU timing measurements
-│
-└── paper/                   Manuscript & presentation source
-    ├── PIA_IVIM_1_Introduction.tex / .docx
-    ├── PIA_IVIM_2_Methodology.tex / .docx
-    └── PIA_IVIM_Presentation.pptx          13-slide PowerPoint presentation
+└── results/                 Quantitative evaluation output files (.json)
+    ├── noise_evaluation_results_e2e.json   rRMSE across noise levels
+    └── inference_timing.json               CPU & GPU timing statistics
 ```
 
-## Data Format
+---
 
-Each patient case (400 cases, indexed 0001–0400) has 6 files in `data/`:
+## Bi-exponential IVIM Signal Physics
 
-| File | Shape | Description |
-|------|-------|-------------|
-| `XXXX_IVIMParam.npy` | `200×200×3` | Ground truth parameters (f, Dt, D*) |
-| `XXXX_gtDWIs.npy` | `200×200×8` | Clean ground truth DWI signals |
-| `XXXX_NoisyDWIk.npy` | `200×200×8` | Complex k-space data with noise |
-| `XXXX_NoisyEstimate.npy` | `200×200×3` | MLP-PIA parameter estimates |
-| `XXXX_NoisyEstimateCNN.npy` | `200×200×3` | CNN-PIA parameter estimates |
-| `XXXX_TissueType.npy` | `200×200` | Tissue segmentation (1=air, 8=tumor) |
+The observed DW-MRI signal decay as a function of diffusion gradient factor $b$ is given by:
 
-**b-values**: [0, 5, 50, 100, 200, 500, 800, 1000] s/mm²
+$$\frac{S(b)}{S(0)} = (1 - f) \cdot \exp(-b \cdot D_t) + f \cdot \exp(-b \cdot D^*)$$
 
-## IVIM Model
+| Parameter | Symbol | Biophysical Meaning | Typical Range | Units |
+|-----------|--------|---------------------|---------------|-------|
+| **Perfusion Fraction** | $f$ | Micro-vascular blood volume fraction | $0.05 - 0.35$ | dimensionless |
+| **Tissue Diffusivity** | $D_t$ | True extravascular water diffusion | $0.0007 - 0.0015$ | $\text{mm}^2/\text{s}$ |
+| **Pseudo-Diffusivity** | $D^*$ | Capillary blood flow microcirculation | $0.005 - 0.060$ | $\text{mm}^2/\text{s}$ |
 
-The bi-exponential IVIM signal model:
+Acquisition $b$-values: $[0, 5, 50, 100, 200, 500, 800, 1000]\text{ s/mm}^2$.
 
-$$S(b) = (1-f) \cdot e^{-b \cdot D_t} + f \cdot e^{-b \cdot D^*}$$
+---
 
-| Parameter | Symbol | Units | Typical Range |
-|-----------|--------|-------|---------------|
-| Perfusion fraction | f | — | 0.05–0.35 |
-| Tissue diffusivity | Dt | mm²/s | 0.0007–0.0015 |
-| Pseudo-diffusivity | D* | mm²/s | 0.005–0.06 |
+## How to Install and Run
 
-## Dependencies
+### 1. Prerequisites & Installation
 
-- Python 3.8+
-- PyTorch (with CUDA support for GPU inference)
-- NumPy
-- SciPy
-- matplotlib
-- python-pptx
-- tqdm
-
-## Usage
-
-All models and evaluations are run from their respective directories:
+Ensure you have Python 3.8+ installed. Clone the repository and install dependencies:
 
 ```bash
-# Run NLLS baseline
-cd src
-python NLLS_solution.py
+# Clone repository
+git clone https://github.com/sabya-chow/PIVA-prostate-MRI.git
+cd PIVA-prostate-MRI
 
-# Benchmark inference speeds (CPU & GPU)
-cd ../figures
-python benchmark_inference.py
+# Switch to the breast cancer branch
+git checkout pia_breast
 
-# Generate publication tables and figures
-python plot_tables.py
-python plot_noise_clean.py
-python plot_paper_figures.py
+# Install required packages
+pip install -r requirements.txt
 ```
 
-## Citation
+### 2. Running Baseline NLLS Fitting
 
-Based on the PIA-IVIM framework by Batuhan Gundogdu, University of Chicago Radiology.
-Upstream: [batuhan-gundogdu/PIA_IVIM](https://github.com/batuhan-gundogdu/PIA_IVIM)
+To run the voxel-wise Non-Linear Least Squares (NLLS) optimization baseline across test patient data:
+
+```bash
+cd src
+python NLLS_solution.py
+```
+
+### 3. Benchmarking Inference Speeds (CPU & GPU)
+
+To reproduce CPU vs. GPU latency benchmarks across NLLS and deep learning models:
+
+```bash
+cd figures
+python benchmark_inference.py
+```
+
+Output results will be updated in `results/inference_timing.json` and saved as `figures/inference_time_table.png`.
+
+### 4. Generating Quantitative Figures & Tables
+
+To generate publication-ready performance plots, qualitative parameter maps, and ablation figures:
+
+```bash
+cd figures
+
+# Generate rRMSE noise-level curves
+python plot_noise_clean.py
+
+# Generate qualitative comparison maps and ablation figures
+python plot_paper_figures.py
+
+# Generate paper summary tables
+python plot_tables.py
+```
+
+---
+
+## Citation & References
+
+- Based on the PIA-IVIM framework by Batuhan Gundogdu, University of Chicago Radiology.
+- Upstream reference: [batuhan-gundogdu/PIA_IVIM](https://github.com/batuhan-gundogdu/PIA_IVIM)
