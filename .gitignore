@@ -19,6 +19,10 @@ Thumbs.db
 
 # Office / PowerPoint temp files
 ~$*
+~WRL*.tmp
+
+# Equation rendering build artifacts
+paper/_eq_images/
 
 # Logs
 nohup.out
