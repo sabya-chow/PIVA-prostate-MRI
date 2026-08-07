@@ -3,6 +3,14 @@
 **Capstone Project | MS Applied Data Science | University of Chicago**  
 **Authors:** Sabyasachi Chowdhury · sabyachow@gmail.com · Aaron Garay · aaron.m.garay@gmail.com
 
+## Live Interactive Demo
+
+Explore the patient-facing PIVA report, probabilistic dashboard, reference ranges, and MRI signal interpretation in the deployed Streamlit application:
+
+### [Launch the PIVA Patient Report Demo](https://piva-prostate-mrigit-zqwstmadjhab8u5cbhkqnp.streamlit.app)
+
+> **Capstone demonstration:** The application uses prepared synthetic cases to illustrate the PIVA workflow. It is not a medical device and does not provide a clinical diagnosis.
+
 ---
 
 ## Abstract
