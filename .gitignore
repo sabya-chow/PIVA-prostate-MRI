@@ -50,3 +50,10 @@ data/
 figures/
 *.png
 !assets/*.png
+template.pptx
+8_16_24_progress.pptx
+Prostate_MRI_Computational_Blueprint.pptx
+PIA_IVIM_Presentation.pptx
+
+# Deck build tooling (local only)
+decks/build_deck.py
