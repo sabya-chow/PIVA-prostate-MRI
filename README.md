@@ -11,6 +11,14 @@ Explore the patient-facing PIVA report, probabilistic dashboard, reference range
 
 > **Capstone demonstration:** The application uses prepared synthetic cases to illustrate the PIVA workflow. It is not a medical device and does not provide a clinical diagnosis.
 
+## Video Walkthrough
+
+Watch the end-to-end product demonstration, including the PIVA workflow, uncertainty-aware tissue estimates, synthetic-reference comparisons, and physics-based MRI signal reconstruction.
+
+[![Watch the PIVA product walkthrough on YouTube](https://img.youtube.com/vi/yGSaXnhFMUs/maxresdefault.jpg)](https://www.youtube.com/watch?v=yGSaXnhFMUs)
+
+### [Watch the PIVA Product Walkthrough on YouTube](https://www.youtube.com/watch?v=yGSaXnhFMUs)
+
 ---
 
 ## Abstract
