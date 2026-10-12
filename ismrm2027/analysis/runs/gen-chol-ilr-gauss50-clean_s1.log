@@ -1,0 +1,13 @@
+[10:57:47] gen-chol-ilr-gauss50-clean_s1: X_train (122880, 16)  seed=1  threads=1  batch=2048  args={'model': 'generic', 'seed': 1, 'epochs': 200, 'threads': 1, 'out': 'runs', 'cov': 'chol', 'vmap': 'ilr', 'lik_sd': 50.0, 'lik': 'gauss', 'target': 'clean', 'beta': 0.1, 'lik_mode': 'fixed'}
+[10:58:39] gen-chol-ilr-gauss50-clean_s1 | epoch 001 | signal_MSE=2078.61 | KL=2.780
+[11:16:18] gen-chol-ilr-gauss50-clean_s1 | epoch 020 | signal_MSE=822.95 | KL=2.722
+[11:42:56] gen-chol-ilr-gauss50-clean_s1 | epoch 040 | signal_MSE=799.19 | KL=2.727
+[12:02:45] gen-chol-ilr-gauss50-clean_s1 | epoch 060 | signal_MSE=792.53 | KL=2.735
+[12:22:44] gen-chol-ilr-gauss50-clean_s1 | epoch 080 | signal_MSE=776.09 | KL=2.739
+[12:44:27] gen-chol-ilr-gauss50-clean_s1 | epoch 100 | signal_MSE=766.24 | KL=2.742
+[13:11:05] gen-chol-ilr-gauss50-clean_s1 | epoch 120 | signal_MSE=754.16 | KL=2.752
+[13:39:08] gen-chol-ilr-gauss50-clean_s1 | epoch 140 | signal_MSE=741.23 | KL=2.748
+[14:02:46] gen-chol-ilr-gauss50-clean_s1 | epoch 160 | signal_MSE=722.72 | KL=2.748
+[14:24:07] gen-chol-ilr-gauss50-clean_s1 | epoch 180 | signal_MSE=716.92 | KL=2.741
+[14:47:14] gen-chol-ilr-gauss50-clean_s1 | epoch 200 | signal_MSE=696.59 | KL=2.753
+[14:47:14] done in 13767.2s

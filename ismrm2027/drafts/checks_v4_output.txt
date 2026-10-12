@@ -1,0 +1,113 @@
+params                                                 D_ep   D_st  D_lum  T2_ep  T2_st T2_lum   v_ep   v_st  v_lum
+
+# 1. Calibrated (separate-cohort tau) widths, sigma=0.05, mean of 3 seeds
+chol cal coverage                                      0.94   0.95   0.96   0.95   0.93   0.93   0.94   0.93   0.94
+chol cal width unclipped %                               80     88     80     70     86    122     49     59     29
+chol cal width clipped %                                 76     79     76     69     75     90     49     59     29
+chol frac voxels interval leaves box                   0.62   0.69   0.66   0.21   0.59   1.00   0.13   0.14   0.02
+diag cal coverage                                      0.94   0.95   0.95   0.94   0.94   0.95   0.95   0.93   0.94
+diag cal width unclipped %                               84     92     97     69     98    142     49     61     30
+diag cal width clipped %                                 78     82     79     68     84     88     48     61     30
+diag frac voxels interval leaves box                   0.73   0.86   0.72   0.15   0.90   0.78   0.29   0.16   0.00
+
+# 2. Likelihood SD 50, seed 0, raw (no tau)
+gen-chol-ilr-gauss50-clean s=0.01 cov                  1.00   1.00   1.00   1.00   1.00   1.00   0.94   0.93   0.98
+gen-chol-ilr-gauss50-clean s=0.01 width unclipped       111    102    120     95    108    119     38     45     21
+gen-chol-ilr-gauss50-clean s=0.01 width clipped          95     91     99     86     94     99     38     44     21
+gen-chol-ilr-gauss50-clean s=0.03 cov                  1.00   1.00   1.00   1.00   1.00   1.00   0.91   0.89   0.96
+gen-chol-ilr-gauss50-clean s=0.03 width unclipped       112    103    120     96    108    119     38     45     21
+gen-chol-ilr-gauss50-clean s=0.03 width clipped          95     91     99     87     95     99     38     45     21
+gen-chol-ilr-gauss50-clean s=0.05 cov                  1.00   1.00   1.00   1.00   0.99   1.00   0.88   0.85   0.90
+gen-chol-ilr-gauss50-clean s=0.05 width unclipped       112    103    120     96    108    119     38     45     21
+gen-chol-ilr-gauss50-clean s=0.05 width clipped          95     92     99     88     95     99     38     45     21
+gen-chol-ilr-gauss50-clean s=0.08 cov                  1.00   0.99   1.00   0.99   0.99   1.00   0.83   0.80   0.80
+gen-chol-ilr-gauss50-clean s=0.08 width unclipped       112    104    120     96    109    119     38     45     21
+gen-chol-ilr-gauss50-clean s=0.08 width clipped          95     92     99     87     95     99     38     44     21
+gen-chol-ilr-gauss50-clean s=0.08 spearman rho (last sigma)  -0.05  -0.08  -0.03  -0.04   0.00  -0.05   0.21   0.11   0.07
+gen-chol-ilr-gauss50-clean s=0.05 spearman rho        -0.03  -0.09  -0.03   0.02  -0.00  -0.05   0.16   0.12   0.02
+gen-chol-ilr-gauss50-noisy s=0.01 cov                  1.00   1.00   1.00   1.00   1.00   1.00   0.96   0.95   0.99
+gen-chol-ilr-gauss50-noisy s=0.01 width unclipped       111    102    120     94    107    119     38     45     21
+gen-chol-ilr-gauss50-noisy s=0.01 width clipped          95     90     99     85     93     99     38     45     21
+gen-chol-ilr-gauss50-noisy s=0.03 cov                  1.00   0.99   1.00   0.99   0.99   1.00   0.94   0.93   0.98
+gen-chol-ilr-gauss50-noisy s=0.03 width unclipped       110    100    120     94    105    119     38     46     21
+gen-chol-ilr-gauss50-noisy s=0.03 width clipped          94     89     99     83     91     98     38     46     21
+gen-chol-ilr-gauss50-noisy s=0.05 cov                  0.99   0.99   1.00   0.96   0.97   1.00   0.92   0.90   0.93
+gen-chol-ilr-gauss50-noisy s=0.05 width unclipped       109     97    120     93    102    118     39     46     21
+gen-chol-ilr-gauss50-noisy s=0.05 width clipped          93     86     99     80     88     98     39     46     21
+gen-chol-ilr-gauss50-noisy s=0.08 cov                  0.96   0.91   1.00   0.84   0.87   0.99   0.84   0.82   0.81
+gen-chol-ilr-gauss50-noisy s=0.08 width unclipped       106     89    119     88     92    117     39     47     21
+gen-chol-ilr-gauss50-noisy s=0.08 width clipped          90     77     98     74     78     97     38     46     21
+gen-chol-ilr-gauss50-noisy s=0.08 spearman rho (last sigma)  -0.26  -0.22  -0.07  -0.36  -0.32  -0.10   0.17   0.12   0.13
+gen-chol-ilr-gauss50-noisy s=0.05 spearman rho        -0.09  -0.06  -0.05  -0.15  -0.08  -0.07   0.17   0.14   0.08
+gen-chol-ilr-rician50-noisy s=0.01 cov                 1.00   0.99   1.00   1.00   0.99   1.00   0.95   0.94   0.99
+gen-chol-ilr-rician50-noisy s=0.01 width unclipped      112    101    120     93    107    119     36     43     21
+gen-chol-ilr-rician50-noisy s=0.01 width clipped         95     88     99     84     92     98     36     43     21
+gen-chol-ilr-rician50-noisy s=0.03 cov                 1.00   0.98   1.00   0.99   0.99   1.00   0.94   0.92   0.97
+gen-chol-ilr-rician50-noisy s=0.03 width unclipped      111    101    120     93    106    119     36     44     21
+gen-chol-ilr-rician50-noisy s=0.03 width clipped         94     88     99     84     92     98     36     43     21
+gen-chol-ilr-rician50-noisy s=0.05 cov                 0.99   0.98   1.00   0.97   0.99   1.00   0.90   0.88   0.92
+gen-chol-ilr-rician50-noisy s=0.05 width unclipped      110    100    120     93    106    119     36     44     21
+gen-chol-ilr-rician50-noisy s=0.05 width clipped         93     88     99     82     91     98     36     44     21
+gen-chol-ilr-rician50-noisy s=0.08 cov                 0.96   0.96   1.00   0.90   0.96   0.99   0.84   0.81   0.82
+gen-chol-ilr-rician50-noisy s=0.08 width unclipped      107     97    120     90    101    118     37     45     21
+gen-chol-ilr-rician50-noisy s=0.08 width clipped         90     84     98     77     87     98     37     44     21
+gen-chol-ilr-rician50-noisy s=0.08 spearman rho (last sigma)  -0.25  -0.15  -0.04  -0.25  -0.14  -0.08   0.17   0.09   0.08
+gen-chol-ilr-rician50-noisy s=0.05 spearman rho       -0.09  -0.16  -0.04  -0.07  -0.03  -0.06   0.19   0.15   0.06
+gen-diag-softmax-gauss50-clean s=0.01 cov              0.87   0.96   1.00   0.99   0.93   1.00   0.81   0.84   0.98
+gen-diag-softmax-gauss50-clean s=0.01 width unclipped     89     93    119     83     94    118     29     37     22
+gen-diag-softmax-gauss50-clean s=0.01 width clipped      78     83     99     77     83     98     29     37     22
+gen-diag-softmax-gauss50-clean s=0.03 cov              0.86   0.96   1.00   0.98   0.94   1.00   0.77   0.80   0.96
+gen-diag-softmax-gauss50-clean s=0.03 width unclipped     88     94    119     82     95    118     30     38     22
+gen-diag-softmax-gauss50-clean s=0.03 width clipped      77     84     99     77     84     98     30     37     22
+gen-diag-softmax-gauss50-clean s=0.05 cov              0.85   0.96   1.00   0.96   0.93   1.00   0.71   0.75   0.90
+gen-diag-softmax-gauss50-clean s=0.05 width unclipped     88     95    119     82     96    118     30     38     22
+gen-diag-softmax-gauss50-clean s=0.05 width clipped      77     85     99     76     84     98     30     37     22
+gen-diag-softmax-gauss50-clean s=0.08 cov              0.86   0.96   1.00   0.94   0.93   1.00   0.66   0.68   0.83
+gen-diag-softmax-gauss50-clean s=0.08 width unclipped     87     96    119     80     96    118     30     38     22
+gen-diag-softmax-gauss50-clean s=0.08 width clipped      77     86     99     75     85     98     30     37     22
+gen-diag-softmax-gauss50-clean s=0.08 spearman rho (last sigma)  -0.49  -0.17  -0.01  -0.08  -0.19  -0.06   0.35   0.16   0.08
+gen-diag-softmax-gauss50-clean s=0.05 spearman rho    -0.50  -0.14  -0.01   0.01  -0.17  -0.05   0.34   0.20   0.04
+
+# 3. Original loss raw coverage vs sigma (calibration_long, mean over seeds)
+PIVA-Diagonal s=0.01                                   0.07   0.07   0.42   0.11   0.07   0.18   0.07   0.06   0.19
+PIVA-Diagonal s=0.03                                   0.07   0.07   0.39   0.09   0.06   0.19   0.06   0.05   0.12
+PIVA-Diagonal s=0.05                                   0.07   0.08   0.33   0.08   0.06   0.18   0.05   0.05   0.09
+PIVA-Diagonal s=0.08                                   0.07   0.07   0.28   0.08   0.06   0.16   0.05   0.04   0.07
+PIVA-CholeskyILR s=0.01                                0.27   0.20   0.70   0.21   0.18   0.49   0.17   0.18   0.26
+PIVA-CholeskyILR s=0.03                                0.30   0.18   0.68   0.19   0.16   0.50   0.14   0.15   0.17
+PIVA-CholeskyILR s=0.05                                0.29   0.19   0.62   0.18   0.15   0.49   0.13   0.13   0.13
+PIVA-CholeskyILR s=0.08                                0.25   0.16   0.57   0.15   0.13   0.47   0.11   0.11   0.10
+
+# 4. crb_widths.csv, sigma=0.05
+shrink ratio (BCRB/prior SD)                          0.969  0.899  0.995  0.876  0.871  0.991  0.498  0.664  0.299
+shrinkage % = 100(1-ratio)                              3.1   10.1    0.5   12.4   12.9    0.9   50.2   33.6   70.1
+max R2 = 1 - ratio^2                                   0.06   0.19   0.01   0.23   0.24   0.02   0.75   0.56   0.91
+prior-free CRB 95% width % box                          225    161   1198    129    181    663     89     99     52
+BCRB 95% width %                                       43.0   48.5   44.5   48.3   58.4   68.0   36.3   48.1   20.3
+BCRB width % sigma=0.01                                30.1   24.9   43.5   20.3   27.0   57.9   13.4   16.3    6.6
+BCRB width % sigma=0.03                                41.3   43.4   44.4   41.0   50.7   66.9   27.4   36.1   14.6
+BCRB width % sigma=0.08                                43.7   51.1   44.5   52.1   62.5   68.3   45.2   58.4   27.2
+
+# 5. v_ep by true composition (benign-like 0.18-0.28, cancer-like 0.44-0.54), sigma=0.05
+n benign-like 432, cancer-like 213; true means 0.228 0.488
+chol s0: est mean benign 0.255 cancer 0.386 (contrast 0.131); cancer-like cov 0.13, excl 0.232 0.97; benign-like excl 0.488 0.99; mean halfwidth cancer 0.026
+chol s1: est mean benign 0.274 cancer 0.414 (contrast 0.139); cancer-like cov 0.21, excl 0.232 0.99; benign-like excl 0.488 0.98; mean halfwidth cancer 0.030
+chol s2: est mean benign 0.261 cancer 0.390 (contrast 0.129); cancer-like cov 0.12, excl 0.232 0.99; benign-like excl 0.488 0.99; mean halfwidth cancer 0.027
+diag s0: est mean benign 0.245 cancer 0.341 (contrast 0.096); cancer-like cov 0.00, excl 0.232 0.99; benign-like excl 0.488 1.00; mean halfwidth cancer 0.010
+diag s1: est mean benign 0.251 cancer 0.354 (contrast 0.103); cancer-like cov 0.00, excl 0.232 1.00; benign-like excl 0.488 1.00; mean halfwidth cancer 0.010
+diag s2: est mean benign 0.257 cancer 0.369 (contrast 0.111); cancer-like cov 0.01, excl 0.232 0.99; benign-like excl 0.488 1.00; mean halfwidth cancer 0.010
+gen-chol-ilr-gauss50-clean s0: est mean benign 0.292 cancer 0.473 (contrast 0.181); cancer-like cov 0.95, excl 0.232 0.51; benign-like excl 0.488 0.59; mean halfwidth cancer 0.232
+gen-chol-ilr-gauss50-noisy s0: est mean benign 0.275 cancer 0.470 (contrast 0.195); cancer-like cov 0.96, excl 0.232 0.50; benign-like excl 0.488 0.65; mean halfwidth cancer 0.241
+gen-chol-ilr-rician50-noisy s0: est mean benign 0.280 cancer 0.477 (contrast 0.197); cancer-like cov 0.96, excl 0.232 0.60; benign-like excl 0.488 0.65; mean halfwidth cancer 0.226
+chol s0 v_ep cov by bin <0.3/0.3-0.4/>0.4: 0.11(n=1052,bias +0.06) 0.26(n=364,bias -0.02) 0.07(n=584,bias -0.14)
+chol s1 v_ep cov by bin <0.3/0.3-0.4/>0.4: 0.11(n=1052,bias +0.07) 0.31(n=364,bias -0.01) 0.12(n=584,bias -0.12)
+chol s2 v_ep cov by bin <0.3/0.3-0.4/>0.4: 0.11(n=1052,bias +0.07) 0.27(n=364,bias -0.02) 0.07(n=584,bias -0.14)
+gen-chol-ilr-gauss50-clean s0 v_ep cov by bin <0.3/0.3-0.4/>0.4: 0.82(n=1052,bias +0.09) 0.94(n=364,bias +0.03) 0.94(n=584,bias -0.05)
+gen-chol-ilr-gauss50-noisy s0 v_ep cov by bin <0.3/0.3-0.4/>0.4: 0.88(n=1052,bias +0.07) 0.96(n=364,bias +0.01) 0.95(n=584,bias -0.05)
+
+# 6. v R2 spread across PIA / Diagonal / Cholesky (large2000)
+sigma=0.01: v_ep: PIA=0.698 PIVA-Chol=0.724 PIVA-Diag=0.610 spread=0.114 | v_st: PIA=0.702 PIVA-Chol=0.692 PIVA-Diag=0.612 spread=0.090 | v_lum: PIA=0.978 PIVA-Chol=0.972 PIVA-Diag=0.978 spread=0.006
+sigma=0.03: v_ep: PIA=0.663 PIVA-Chol=0.659 PIVA-Diag=0.558 spread=0.105 | v_st: PIA=0.604 PIVA-Chol=0.546 PIVA-Diag=0.486 spread=0.118 | v_lum: PIA=0.946 PIVA-Chol=0.934 PIVA-Diag=0.941 spread=0.012
+sigma=0.05: v_ep: PIA=0.612 PIVA-Chol=0.582 PIVA-Diag=0.488 spread=0.124 | v_st: PIA=0.484 PIVA-Chol=0.397 PIVA-Diag=0.341 spread=0.143 | v_lum: PIA=0.899 PIVA-Chol=0.886 PIVA-Diag=0.891 spread=0.013
+sigma=0.08: v_ep: PIA=0.530 PIVA-Chol=0.495 PIVA-Diag=0.403 spread=0.127 | v_st: PIA=0.332 PIVA-Chol=0.247 PIVA-Diag=0.176 spread=0.156 | v_lum: PIA=0.815 PIVA-Chol=0.809 PIVA-Diag=0.810 spread=0.006
+

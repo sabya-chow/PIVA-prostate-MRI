@@ -1,0 +1,21 @@
+--model pia --seed 0
+--model diag --seed 0
+--model chol --seed 0
+--model pia --seed 1
+--model diag --seed 1
+--model chol --seed 1
+--model pia --seed 2
+--model diag --seed 2
+--model chol --seed 2
+--model generic --cov diag --vmap softmax --lik_sd 50 --target clean --seed 0
+--model generic --cov chol --vmap ilr --lik_sd 50 --target clean --seed 0
+--model generic --cov diag --vmap ilr --seed 0
+--model generic --cov chol --vmap softmax --seed 0
+--model generic --cov diag --vmap softmax --lik_sd 50 --target noisy --seed 0
+--model generic --cov chol --vmap ilr --lik_sd 50 --target noisy --seed 0
+--model generic --cov diag --vmap softmax --lik_sd 28.28 --target clean --seed 0
+--model generic --cov chol --vmap ilr --lik_sd 28.28 --target clean --seed 0
+--model generic --cov diag --vmap softmax --lik_sd 15.49 --target clean --seed 0
+--model generic --cov chol --vmap ilr --lik_sd 15.49 --target clean --seed 0
+--model generic --cov diag --vmap softmax --lik_sd 50 --lik rician --target noisy --seed 0
+--model generic --cov chol --vmap ilr --lik_sd 50 --lik rician --target noisy --seed 0

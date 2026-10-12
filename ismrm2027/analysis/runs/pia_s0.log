@@ -1,0 +1,13 @@
+pia_s0: X_train (122880, 16)  seed=0  threads=1  batch=2048  args={'model': 'pia', 'seed': 0, 'epochs': 200, 'threads': 1, 'out': 'runs', 'cov': 'diag', 'vmap': 'softmax', 'lik_sd': None, 'lik': 'gauss', 'target': 'clean', 'beta': 0.1}
+PIA | epoch 001 | signal_MSE=688.22
+PIA | epoch 020 | signal_MSE=301.79
+PIA | epoch 040 | signal_MSE=287.07
+PIA | epoch 060 | signal_MSE=246.59
+PIA | epoch 080 | signal_MSE=197.03
+PIA | epoch 100 | signal_MSE=159.64
+PIA | epoch 120 | signal_MSE=136.88
+PIA | epoch 140 | signal_MSE=113.29
+PIA | epoch 160 | signal_MSE=96.73
+PIA | epoch 180 | signal_MSE=87.89
+PIA | epoch 200 | signal_MSE=76.96
+done in 11455.2s

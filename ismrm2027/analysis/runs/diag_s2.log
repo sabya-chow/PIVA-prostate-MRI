@@ -1,0 +1,13 @@
+[02:00:27] diag_s2: X_train (122880, 16)  seed=2  threads=1  batch=2048  args={'model': 'diag', 'seed': 2, 'epochs': 200, 'threads': 1, 'out': 'runs', 'cov': 'diag', 'vmap': 'softmax', 'lik_sd': None, 'lik': 'gauss', 'target': 'clean', 'beta': 0.1}
+[02:01:05] PIVA-Diag | epoch 001 | signal_MSE=1880.12 | KL=29.322
+[02:13:40] PIVA-Diag | epoch 020 | signal_MSE=311.02 | KL=29.564
+[02:29:24] PIVA-Diag | epoch 040 | signal_MSE=286.69 | KL=29.665
+[02:46:21] PIVA-Diag | epoch 060 | signal_MSE=250.13 | KL=29.483
+[03:06:25] PIVA-Diag | epoch 080 | signal_MSE=200.73 | KL=29.530
+[03:26:18] PIVA-Diag | epoch 100 | signal_MSE=165.45 | KL=29.464
+[03:46:02] PIVA-Diag | epoch 120 | signal_MSE=127.49 | KL=29.373
+[04:05:12] PIVA-Diag | epoch 140 | signal_MSE=107.07 | KL=29.572
+[04:24:17] PIVA-Diag | epoch 160 | signal_MSE=94.39 | KL=29.447
+[04:43:26] PIVA-Diag | epoch 180 | signal_MSE=84.95 | KL=29.316
+[05:02:33] PIVA-Diag | epoch 200 | signal_MSE=73.57 | KL=29.375
+[05:02:33] done in 10925.9s

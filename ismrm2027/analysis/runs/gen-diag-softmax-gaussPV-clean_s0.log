@@ -1,0 +1,13 @@
+[10:57:47] gen-diag-softmax-gaussPV-clean_s0: X_train (122880, 16)  seed=0  threads=1  batch=2048  args={'model': 'generic', 'seed': 0, 'epochs': 200, 'threads': 1, 'out': 'runs', 'cov': 'diag', 'vmap': 'softmax', 'lik_sd': None, 'lik': 'gauss', 'target': 'clean', 'beta': 0.1, 'lik_mode': 'pervoxel'}
+[10:58:39] gen-diag-softmax-gaussPV-clean_s0 | epoch 001 | signal_MSE=1820.78 | KL=6.593
+[11:16:00] gen-diag-softmax-gaussPV-clean_s0 | epoch 020 | signal_MSE=1010.20 | KL=5.372
+[11:42:28] gen-diag-softmax-gaussPV-clean_s0 | epoch 040 | signal_MSE=1012.39 | KL=5.353
+[12:02:05] gen-diag-softmax-gaussPV-clean_s0 | epoch 060 | signal_MSE=1007.19 | KL=5.355
+[12:21:52] gen-diag-softmax-gaussPV-clean_s0 | epoch 080 | signal_MSE=1004.15 | KL=5.311
+[12:43:02] gen-diag-softmax-gaussPV-clean_s0 | epoch 100 | signal_MSE=996.81 | KL=5.327
+[13:09:24] gen-diag-softmax-gaussPV-clean_s0 | epoch 120 | signal_MSE=992.64 | KL=5.325
+[13:37:07] gen-diag-softmax-gaussPV-clean_s0 | epoch 140 | signal_MSE=984.61 | KL=5.330
+[14:01:06] gen-diag-softmax-gaussPV-clean_s0 | epoch 160 | signal_MSE=981.08 | KL=5.321
+[14:22:06] gen-diag-softmax-gaussPV-clean_s0 | epoch 180 | signal_MSE=979.68 | KL=5.330
+[14:45:34] gen-diag-softmax-gaussPV-clean_s0 | epoch 200 | signal_MSE=972.02 | KL=5.310
+[14:45:34] done in 13667.0s

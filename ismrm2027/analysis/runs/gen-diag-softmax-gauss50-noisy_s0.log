@@ -1,0 +1,13 @@
+[02:00:27] gen-diag-softmax-gauss50-noisy_s0: X_train (122880, 16)  seed=0  threads=1  batch=2048  args={'model': 'generic', 'seed': 0, 'epochs': 200, 'threads': 1, 'out': 'runs', 'cov': 'diag', 'vmap': 'softmax', 'lik_sd': 50.0, 'lik': 'gauss', 'target': 'noisy', 'beta': 0.1}
+[02:01:05] gen-diag-softmax-gauss50-noisy_s0 | epoch 001 | signal_MSE=4020.53 | KL=3.732
+[02:13:37] gen-diag-softmax-gauss50-noisy_s0 | epoch 020 | signal_MSE=2819.44 | KL=4.091
+[02:29:16] gen-diag-softmax-gauss50-noisy_s0 | epoch 040 | signal_MSE=2804.32 | KL=4.084
+[02:45:59] gen-diag-softmax-gauss50-noisy_s0 | epoch 060 | signal_MSE=2771.26 | KL=4.130
+[03:05:52] gen-diag-softmax-gauss50-noisy_s0 | epoch 080 | signal_MSE=2758.18 | KL=4.137
+[03:25:33] gen-diag-softmax-gauss50-noisy_s0 | epoch 100 | signal_MSE=2753.45 | KL=4.129
+[03:45:06] gen-diag-softmax-gauss50-noisy_s0 | epoch 120 | signal_MSE=2748.41 | KL=4.127
+[04:04:07] gen-diag-softmax-gauss50-noisy_s0 | epoch 140 | signal_MSE=2742.42 | KL=4.128
+[04:23:02] gen-diag-softmax-gauss50-noisy_s0 | epoch 160 | signal_MSE=2741.28 | KL=4.139
+[04:42:00] gen-diag-softmax-gauss50-noisy_s0 | epoch 180 | signal_MSE=2736.34 | KL=4.160
+[05:00:55] gen-diag-softmax-gauss50-noisy_s0 | epoch 200 | signal_MSE=2740.51 | KL=4.133
+[05:00:55] done in 10828.3s

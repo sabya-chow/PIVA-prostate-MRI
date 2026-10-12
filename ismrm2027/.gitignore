@@ -1,0 +1,9 @@
+# Scoped to ismrm2027/. The repo-root .gitignore excludes figures/ and *.png;
+# re-include them here so the audit and submission figures are versioned.
+!figures/
+!*.png
+
+# Large or regenerable outputs (see README "What is not in this branch")
+analysis/runs_r2/
+analysis/logs/
+*.pt

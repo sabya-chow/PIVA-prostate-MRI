@@ -1,0 +1,13 @@
+[05:04:48] gen-chol-ilr-rician50-noisy_s0: X_train (122880, 16)  seed=0  threads=1  batch=2048  args={'model': 'generic', 'seed': 0, 'epochs': 200, 'threads': 1, 'out': 'runs', 'cov': 'chol', 'vmap': 'ilr', 'lik_sd': 50.0, 'lik': 'rician', 'target': 'noisy', 'beta': 0.1}
+[05:05:48] gen-chol-ilr-rician50-noisy_s0 | epoch 001 | signal_MSE=3843.72 | KL=2.726
+[05:22:03] gen-chol-ilr-rician50-noisy_s0 | epoch 020 | signal_MSE=2602.27 | KL=2.930
+[05:39:12] gen-chol-ilr-rician50-noisy_s0 | epoch 040 | signal_MSE=2567.94 | KL=2.947
+[05:56:30] gen-chol-ilr-rician50-noisy_s0 | epoch 060 | signal_MSE=2547.94 | KL=2.954
+[06:14:13] gen-chol-ilr-rician50-noisy_s0 | epoch 080 | signal_MSE=2544.28 | KL=2.958
+[06:31:49] gen-chol-ilr-rician50-noisy_s0 | epoch 100 | signal_MSE=2550.87 | KL=2.964
+[06:49:14] gen-chol-ilr-rician50-noisy_s0 | epoch 120 | signal_MSE=2549.57 | KL=2.964
+[07:07:03] gen-chol-ilr-rician50-noisy_s0 | epoch 140 | signal_MSE=2533.26 | KL=2.968
+[07:24:39] gen-chol-ilr-rician50-noisy_s0 | epoch 160 | signal_MSE=2531.17 | KL=2.977
+[07:42:18] gen-chol-ilr-rician50-noisy_s0 | epoch 180 | signal_MSE=2534.37 | KL=2.966
+[07:57:12] gen-chol-ilr-rician50-noisy_s0 | epoch 200 | signal_MSE=2524.57 | KL=2.978
+[07:57:12] done in 10343.5s

@@ -1,0 +1,13 @@
+[02:00:27] gen-diag-ilr-mseb0.1-clean_s0: X_train (122880, 16)  seed=0  threads=1  batch=2048  args={'model': 'generic', 'seed': 0, 'epochs': 200, 'threads': 1, 'out': 'runs', 'cov': 'diag', 'vmap': 'ilr', 'lik_sd': None, 'lik': 'gauss', 'target': 'clean', 'beta': 0.1}
+[02:01:05] gen-diag-ilr-mseb0.1-clean_s0 | epoch 001 | signal_MSE=1562.91 | KL=26.005
+[02:13:37] gen-diag-ilr-mseb0.1-clean_s0 | epoch 020 | signal_MSE=307.30 | KL=26.725
+[02:29:14] gen-diag-ilr-mseb0.1-clean_s0 | epoch 040 | signal_MSE=297.09 | KL=26.488
+[02:45:54] gen-diag-ilr-mseb0.1-clean_s0 | epoch 060 | signal_MSE=269.44 | KL=26.449
+[03:05:43] gen-diag-ilr-mseb0.1-clean_s0 | epoch 080 | signal_MSE=229.02 | KL=26.605
+[03:25:22] gen-diag-ilr-mseb0.1-clean_s0 | epoch 100 | signal_MSE=188.82 | KL=26.342
+[03:44:50] gen-diag-ilr-mseb0.1-clean_s0 | epoch 120 | signal_MSE=157.20 | KL=26.294
+[04:03:51] gen-diag-ilr-mseb0.1-clean_s0 | epoch 140 | signal_MSE=133.59 | KL=26.186
+[04:22:41] gen-diag-ilr-mseb0.1-clean_s0 | epoch 160 | signal_MSE=114.23 | KL=26.122
+[04:41:35] gen-diag-ilr-mseb0.1-clean_s0 | epoch 180 | signal_MSE=102.43 | KL=26.122
+[05:00:30] gen-diag-ilr-mseb0.1-clean_s0 | epoch 200 | signal_MSE=91.02 | KL=26.182
+[05:00:30] done in 10803.1s

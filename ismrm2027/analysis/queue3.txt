@@ -1,0 +1,10 @@
+--model generic --cov diag --vmap softmax --lik_mode pervoxel --target clean --seed 0
+--model generic --cov chol --vmap ilr --lik_mode pervoxel --target clean --seed 0
+--model generic --cov diag --vmap softmax --lik_mode pervoxel --target clean --seed 1
+--model generic --cov chol --vmap ilr --lik_mode pervoxel --target clean --seed 1
+--model generic --cov diag --vmap softmax --lik_mode pervoxel --target clean --seed 2
+--model generic --cov chol --vmap ilr --lik_mode pervoxel --target clean --seed 2
+--model generic --cov diag --vmap softmax --lik_sd 50 --target clean --seed 1
+--model generic --cov chol --vmap ilr --lik_sd 50 --target clean --seed 1
+--model generic --cov diag --vmap softmax --lik_sd 50 --target clean --seed 2
+--model generic --cov chol --vmap ilr --lik_sd 50 --target clean --seed 2

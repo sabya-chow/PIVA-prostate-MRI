@@ -1,0 +1,13 @@
+chol_s1: X_train (122880, 16)  seed=1  threads=1  batch=2048  args={'model': 'chol', 'seed': 1, 'epochs': 200, 'threads': 1, 'out': 'runs', 'cov': 'diag', 'vmap': 'softmax', 'lik_sd': None, 'lik': 'gauss', 'target': 'clean', 'beta': 0.1}
+PIVA-Chol | epoch 001 | signal_MSE=1721.56 | KL=10.136
+PIVA-Chol | epoch 020 | signal_MSE=310.84 | KL=19.842
+PIVA-Chol | epoch 040 | signal_MSE=295.32 | KL=20.468
+PIVA-Chol | epoch 060 | signal_MSE=263.62 | KL=20.418
+PIVA-Chol | epoch 080 | signal_MSE=217.48 | KL=20.677
+PIVA-Chol | epoch 100 | signal_MSE=180.65 | KL=20.578
+PIVA-Chol | epoch 120 | signal_MSE=146.94 | KL=20.864
+PIVA-Chol | epoch 140 | signal_MSE=132.93 | KL=20.911
+PIVA-Chol | epoch 160 | signal_MSE=110.89 | KL=21.321
+PIVA-Chol | epoch 180 | signal_MSE=99.58 | KL=21.325
+PIVA-Chol | epoch 200 | signal_MSE=90.91 | KL=21.474
+done in 8640.5s

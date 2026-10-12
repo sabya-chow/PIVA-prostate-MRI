@@ -3,6 +3,8 @@
 **Capstone Project | MS Applied Data Science | University of Chicago**  
 **Authors:** Sabyasachi Chowdhury · sabyachow@gmail.com · Aaron Garay · aaron.m.garay@gmail.com
 
+> **ISMRM 2027 audit (this branch):** [`ismrm2027/`](ismrm2027/README.md) re-runs these models with per-compartment metrics, 3 seeds and new uncertainty experiments. It finds that compartmental D and T2 are not recoverable on this protocol at SNR 20 (every method does worse than a constant), so the pooled D/T2 accuracy figures below should not be cited, and the σ = 0.05 comparison table here and in `results/RESULTS.md` (§4) does not reproduce. Tissue fractions are recoverable. See [`ismrm2027/README.md`](ismrm2027/README.md) for the experiments and the abstract draft.
+
 ## Live Interactive Demo
 
 Explore the patient-facing PIVA report, probabilistic dashboard, reference ranges, and MRI signal interpretation in the deployed Streamlit application:

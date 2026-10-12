@@ -1,0 +1,13 @@
+[02:00:27] gen-chol-softmax-mseb0.1-clean_s0: X_train (122880, 16)  seed=0  threads=1  batch=2048  args={'model': 'generic', 'seed': 0, 'epochs': 200, 'threads': 1, 'out': 'runs', 'cov': 'chol', 'vmap': 'softmax', 'lik_sd': None, 'lik': 'gauss', 'target': 'clean', 'beta': 0.1}
+[02:01:06] gen-chol-softmax-mseb0.1-clean_s0 | epoch 001 | signal_MSE=1401.74 | KL=11.604
+[02:14:02] gen-chol-softmax-mseb0.1-clean_s0 | epoch 020 | signal_MSE=316.59 | KL=21.628
+[02:29:57] gen-chol-softmax-mseb0.1-clean_s0 | epoch 040 | signal_MSE=284.69 | KL=21.949
+[02:47:27] gen-chol-softmax-mseb0.1-clean_s0 | epoch 060 | signal_MSE=252.77 | KL=21.827
+[03:07:52] gen-chol-softmax-mseb0.1-clean_s0 | epoch 080 | signal_MSE=202.19 | KL=21.732
+[03:28:07] gen-chol-softmax-mseb0.1-clean_s0 | epoch 100 | signal_MSE=162.59 | KL=21.777
+[03:48:12] gen-chol-softmax-mseb0.1-clean_s0 | epoch 120 | signal_MSE=136.82 | KL=22.024
+[04:07:41] gen-chol-softmax-mseb0.1-clean_s0 | epoch 140 | signal_MSE=115.03 | KL=21.955
+[04:27:08] gen-chol-softmax-mseb0.1-clean_s0 | epoch 160 | signal_MSE=98.65 | KL=22.148
+[04:46:41] gen-chol-softmax-mseb0.1-clean_s0 | epoch 180 | signal_MSE=93.04 | KL=22.272
+[05:06:13] gen-chol-softmax-mseb0.1-clean_s0 | epoch 200 | signal_MSE=76.84 | KL=22.441
+[05:06:13] done in 11146.5s
